@@ -10,8 +10,12 @@ element.style.paddingLeft = '10px'
 element.style.paddingTop = '1px'
 
 
-let element_Content_1 = React.createElement('h1', null, 'Luny Tunes')
-let element_Content_2 = React.createElement('p', null, 'lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.')
+let element_Content_1 = React.createElement('h1', 
+  {'style':{'textDecoration': 'underline', color: 'pink'}}, 
+  'Luny Tunes')
+
+let element_Content_2 = React.createElement('p', 
+  null, 'lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.')
 
 
 createRoot(element).render(
