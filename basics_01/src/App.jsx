@@ -1,3 +1,4 @@
+import Tea from "./Chai";
 import Coffee  from "./Coffee";
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
     <h1>Hello World</h1>
     <hr />
     <p>Learning React</p>
+    <Tea/>
     </>
   )
 }
