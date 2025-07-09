@@ -1,6 +1,12 @@
+import Coffee  from "./Coffee";
 function App() {
   return (
-    <h1>React with VITE</h1>
+    //<h1>xReact with VITE</h1>
+    
+    <>
+    <Coffee />
+    <h1>Hello World</h1>
+    </>
   )
 }
 
