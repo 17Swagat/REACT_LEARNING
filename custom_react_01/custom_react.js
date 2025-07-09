@@ -14,7 +14,8 @@ const reactElement = {
     type: 'a',
     props:{
         href:'https://google.com',
-        target: '_blank'
+        target: '_blank',
+        style:'color:yellow;'
     }, 
     children: 'Click me to visit google'
 };
