@@ -32,6 +32,7 @@ function App() {
       <Card image_link={image_link_3} title="Killer Z" price="$20" id="3"/>
       <Card image_link={image_link_3} title="Killer Z" price="$20" id="3"/>
       <Card image_link={image_link_3} title="Killer Z" price="$20" id="3"/>
+      <Card/>
     </div>
 
     </>
