@@ -1,0 +1,7 @@
+@import "tailwindcss";
+
+
+@theme {
+  /* CUSTOM COLORS:=> */
+    --color-custom_bottom_bar:#f5eba5ff; 
+}
