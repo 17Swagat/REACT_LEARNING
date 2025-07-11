@@ -1,6 +1,7 @@
 import React from "react";
 
-function Card({image_link, title, price, id}){ 
+function Card(props){
+    // {image_link, title, price, id}){ 
 
     return (
         <>
@@ -8,7 +9,8 @@ function Card({image_link, title, price, id}){
         
             <div>
             <img
-                src={image_link}
+                // src={image_link}
+                src={props.image_link}
                 alt="test"
                 className="object-fit object-center rounded-t-xl p-2.5"
             />
@@ -16,12 +18,15 @@ function Card({image_link, title, price, id}){
             </div>
             <div className="flex flex-col py-3 px-3 pb-10">
             <div className="flex justify-between ">
-                <h1 className="font-bold ">{title}</h1>
+                {/* <h1 className="font-bold ">{title}</h1> */}
+                <h1 className="font-bold ">{props.title}</h1>
                 <h1>Price</h1>
             </div>
             <div className="flex  justify-between">
-                <p>{id}</p>
-                <p>{price}</p>
+                {/* <p>{id}</p>
+                <p>{price}</p> */}
+                <p>{props.id}</p>
+                <p>{props.price}</p>
             </div>
             </div>
         </div>

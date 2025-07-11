@@ -1,6 +1,7 @@
 // import { useState } from 'react'
 
 import Card from './components/Card.jsx'
+import IntroTextHi from './components/IntroText.jsx'
 
 function App() {
 
@@ -16,6 +17,8 @@ function App() {
     <div className='bg-amber-600  m-1.5 p-2.5 rounded-2xl'>
     
       <p className='text-custom_text_blue_1 text-5xl font-semibold'>Hello World</p>
+
+      <IntroTextHi text="This is a simple React app with Tailwind CSS!" />
 
       <p className='text-custom_text_green_1 font-semibold text-3xl'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo facilis a dolor dolorem consequuntur aliquid.</p>
 
