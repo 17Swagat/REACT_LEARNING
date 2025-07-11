@@ -1,10 +1,14 @@
 // import { useState } from 'react'
 
+import Card from './components/Card.jsx'
+
 function App() {
-  // const [count, setCount] = useState(0)
 
-  let image_link = 'https://images.pexels.com/photos/15587985/pexels-photo-15587985.jpeg'
+  let image_link_1 = 'https://www.pngmart.com/files/13/Aesthetic-Anime-Boy-PNG-Photo.png';
+  
+  let image_link_2 = 'https://www.pngmart.com/files/23/Narancia-PNG-Isolated-Photo.png';
 
+  let image_link_3 = 'https://www.pngmart.com/files/23/Baki-PNG-Isolated-Pic.png'
 
   return (
     <>
@@ -17,27 +21,15 @@ function App() {
 
     </div>
 
-     <div className="m-16 w-60 flex flex-col rounded-xl bg-amber-300 min-h-[19rem] ">
-        <div>
-          <img
-            src="https://cdn.vox-cdn.com/thumbor/ZkmdkuJUTLgJh96_FWQ5zweGGxo=/1400x1400/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/23084330/bored_ape_nft_accidental_.jpg"
-            alt="test"
-            className="object-cover object-center rounded-t-xl"
-          />
-        </div>
-        <div className="flex flex-col py-3 px-3 pb-10">
-          <div className="flex justify-between ">
-            <h1 className="font-bold ">Bored ape nft accidental</h1>
-            <h1>Price</h1>
-          </div>
-          <div className="flex  justify-between">
-            <p>#345</p>
-            <p>0.01</p>
-          </div>
-        </div>
-      </div>
-        
-
+    <div className="flex flex-wrap justify-center items-center gap-4">
+      <Card image_link={image_link_1} title="Fighter Lee" price="$10" id="1"/>
+      <Card image_link={image_link_2} title="Sprink Kick " price="$10" id="2"/>
+      <Card image_link={image_link_3} title="Killer Z" price="$20" id="3"/>
+      <Card image_link={image_link_3} title="Killer Z" price="$20" id="3"/>
+      <Card image_link={image_link_3} title="Killer Z" price="$20" id="3"/>
+      <Card image_link={image_link_3} title="Killer Z" price="$20" id="3"/>
+      <Card image_link={image_link_3} title="Killer Z" price="$20" id="3"/>
+    </div>
 
     </>
   )
