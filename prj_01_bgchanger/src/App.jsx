@@ -15,6 +15,7 @@ function App() {
     <>
       <div className="flex flex-col h-screen justify-end pb-8 pr-8 pl-8">
         <div className="mt-8"></div>
+
         <div
           className={`bg-custom_bottom_bar text-shadow-indigo-100 flex justify-between items-center pl-10 pr-10 rounded-2xl text-white text-3xl font-semibold`}
         >
