@@ -1,0 +1,8 @@
+@import "tailwindcss";
+
+@theme {
+  /* CUSTOM COLORS:=> */
+  --color-custom_text_blue_1: #0a57aaff;
+  --color-custom_text_green_1: #327624ff;
+  --color-custom-text-red-1: #ff0000ff;
+}
