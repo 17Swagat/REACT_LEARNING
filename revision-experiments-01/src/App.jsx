@@ -1,32 +1,168 @@
+// import { useEffect, useState, useMemo } from "react";
+// import { InputBox, Button_1 } from "./components";
+// import useCurrencyInfo from './hooks/getCurrencyInfo'
+
 // function App() {
+
+//   console.log('App Re/building')
+
+//   const [fromCurrency, setFromCurrency] = useState('usd');
+//   const [toCurrency, setToCurrency] = useState('inr');
+//   const [amount, setAmount] = useState(0);
+//   const [convertedAmount, setConvertedAmount] = useState(0)
+
+//   let currency_info = useCurrencyInfo(fromCurrency)
+//   // const currency_options = Object.keys(currency_info || {}) 
+//   const currency_options = useMemo(
+//     () => Object.keys(currency_info || {}),
+//     [currency_info]
+//   );
+
+
+
+//   useEffect(()=>{
+//       let outputAmount = amount * currency_info[toCurrency];
+//       setConvertedAmount(outputAmount)
+//   }, [amount, fromCurrency, toCurrency, currency_info])
+
 //   return (
-//     <>
-//     <div className="bg-red-500 mx-15 mt-3 rounded-[10px] p-2">
-//       <h1 className="text-7xl">Hello World</h1>
-//       <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Earum rerum, possimus voluptatibus pariatur cupiditate quia in repellat nostrum, sapiente adipisci veniam praesentium, deleniti labore sit natus et sint impedit illo?</p>
+//     // Window - Body
+//     <div  className="w-screen h-screen bg-gray-700 flex flex-col justify-center items-center">
+      
+//       {/* Display Window */}
+//       <div  className="bg-[#4341a79a] p-5 w-1/3 h-80  flex flex-col justify-center items-center rounded-[15px]">
+        
+//         {/* From */}
+//         <InputBox label={"From"} selectCurrency={fromCurrency} amount={amount} currencyOptions={currency_options}
+//           onAmountChange={(value)=>{
+//             setAmount(value)
+//           }}
+//         onCurrencyChange={(value)=>{
+//             setFromCurrency(value) 
+//         }}/>
+        
+//         <div className="h-2"></div>
+
+//         {/* Swap */}
+//         <Button_1 text="SWAP" 
+//           onclick={()=>{
+//             // Currency Exchange
+//             let from_curr = fromCurrency;
+//             setFromCurrency(toCurrency)
+//             setToCurrency(from_curr)
+//         }}/>
+        
+//         <div className="h-2"></div>
+
+//         {/* To */}
+//         <InputBox 
+//           label="To" 
+//           selectCurrency={toCurrency} 
+//           currencyOptions={currency_options} 
+//           amount={convertedAmount}
+//           // onCurrencyChange={(value)=>{
+//           //   //setToCurrency(value)}
+
+//           // }
+//            />
+        
+//         {/* Convert Amount Button */}
+//         <div className="m-1 w-full h-10 bg-green-500 mt-2 p-6  rounded-2xl flex justify-center items-center text-2xl" 
+//         onClick={()=>{
+//           let outputAmount = amount * currency_info[toCurrency];
+//           setConvertedAmount(outputAmount)
+//         }}>
+//           Convert Amount
+//         </div>
+//       </div>
 //     </div>
-//     </>
 //   );
 // }
 
-function App() {
-  let counter_value = 0
+// export default App;
 
-  function incrementCounter() {
-    counter_value += 1
-    console.log('Counter Value:', counter_value)
-  }
+
+
+import { useMemo, useState } from "react";
+import { InputBox, Button_1 } from "./components";
+import useCurrencyInfo from './hooks/getCurrencyInfo';
+
+function App() {
+
+  console.log('App Re/building');
+
+  const [fromCurrency, setFromCurrency] = useState('usd');
+  const [toCurrency, setToCurrency] = useState('inr');
+  const [amount, setAmount] = useState(0);
+
+  // Fetch currency info only for the "fromCurrency"
+  let currency_info = useCurrencyInfo(fromCurrency);
+
+  // Memoize keys so child components don't re-render unnecessarily
+  const currency_options = useMemo(
+    () => Object.keys(currency_info || {}),
+    [currency_info]
+  );
+
+  // Calculate directly instead of storing in state
+  const convertedAmount = useMemo(() => {
+    return amount * (currency_info[toCurrency] || 0);
+  }, [amount, toCurrency, currency_info]);
 
   return (
-    <div className="w-full h-[100vh] bg-amber-700 flex justify-center items-center">
-      <div className="bg-blue-400 inline-block p-5 rounded-2xl">
-        <h1 style={{ textDecoration: 'underline' }}>React Hooks Learning</h1>
-        <strong style={{ fontSize: '30px', display: 'block' }}>COUNTER = {counter_value}</strong>
-        <button onClick={incrementCounter} className="text-3xl block mx-auto bg-red-300">CLICK !!</button>
+    // Window - Body
+    <div className="w-screen h-screen bg-gray-700 flex flex-col justify-center items-center">
+      
+      {/* Display Window */}
+      <div className="bg-[#4341a79a] p-5 w-1/3 h-80 flex flex-col justify-center items-center rounded-[15px]">
+        
+        {/* From */}
+        <InputBox 
+          label="From"
+          selectCurrency={fromCurrency}
+          amount={amount}
+          currencyOptions={currency_options}
+          onAmountChange={(value) => setAmount(value)}
+          onCurrencyChange={(value) => setFromCurrency(value)}
+        />
+        
+        <div className="h-2"></div>
+
+        {/* Swap */}
+        <Button_1 
+          text="SWAP" 
+          onclick={() => {
+            let from_curr = fromCurrency;
+            setFromCurrency(toCurrency);
+            setToCurrency(from_curr);
+          }}
+        />
+        
+        <div className="h-2"></div>
+
+        {/* To */}
+        <InputBox 
+          label="To"
+          selectCurrency={toCurrency}
+          currencyOptions={currency_options}
+          amount={convertedAmount}
+          onCurrencyChange={(value) => setToCurrency(value)}
+          amountDisable={true}
+        />
+        
+        {/* Convert Amount Button */}
+        <div 
+          className="m-1 w-full h-10 bg-green-500 mt-2 p-6 rounded-2xl flex justify-center items-center text-2xl cursor-pointer" 
+          onClick={() => {
+            // This now does nothing special because convertedAmount is already updated in real-time
+            console.log("Convert button clicked");
+          }}
+        >
+          Convert Amount
+        </div>
       </div>
     </div>
-  )
+  );
 }
-
 
 export default App;

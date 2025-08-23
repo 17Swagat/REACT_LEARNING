@@ -1,0 +1,10 @@
+@font-face {
+    font-family: 'ProtestGuerrilla';
+    src: url('../assets/fonts/Protest_Guerrilla/ProtestGuerrilla-Regular.ttf');
+}
+
+@import "tailwindcss";
+
+@theme {
+    --font-protest-guerrila: ProtestGuerrilla, 'sans-serif';
+}
