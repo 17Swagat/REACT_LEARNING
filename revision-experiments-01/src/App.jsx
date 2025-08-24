@@ -6,6 +6,7 @@ export default function App() {
     <>
       <Navbar />
       <HeroSection/>
+      <div className="h-[1000px]"></div>
     </>
   );
 }

@@ -43,16 +43,21 @@ const Navbar = () => {
                         </ul>
                         {/* Sign-In & Create Account */}
                         <div className="bg-amber-500 h-full flex flex-col">
-                            <div className="absolute bottom-0 right-0 flex flex-col gap-3 mb-2">
-                                <button className="h-12 text-3xl bg-amber-600 px-2 rounded-[5px]
+                            <div className="absolute bottom-0 right-0 flex flex-col gap-3 mb-2 items-end pr-2">
+                                <div>
+                                    <button className="h-12 text-3xl bg-amber-600 px-2 rounded-[5px]
                                     flex items-center justify-end transition duration-100 active:invert">Sign In</button>
-                                {/* <div className="w-5.5"></div> */}
-                                <button className="h-12 text-3xl bg-amber-600 px-2 rounded-[5px]">Create Account</button>
+                                </div>
+                                <div>
+                                    <button className="h-12 text-3xl bg-amber-600 px-2 rounded-[5px]
+                                    flex items-center justify-end transition duration-100 active:invert">Create Account</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            
             {/* Non Mobile View */}
             <ul className="hidden bg-transparent  hover:cursor-pointer xl:flex text-2xl  gap-10 font-mono font-semibold  p-3">
                 <li>Home</li>
@@ -63,9 +68,9 @@ const Navbar = () => {
             
             {/* Sign In */}
             <div className="hidden xl:flex font-mono gap-3">
-                <button className="h-10 text-[18px] bg-transparent border-2 px-2 rounded-[5px] hover:invert-10 active:bg-amber-600">Sign In</button>
+                <button className="h-10 text-[18px] bg-transparent border-2 px-2 rounded-[5px] transition  hover:border-amber-600 active:bg-amber-600">Sign In</button>
                 {/* <div className="w-5.5"></div> */}
-                <button className="h-10 text-[18px] bg-amber-700 px-2 rounded-[5px] active:invert">Create Account</button>
+                <button className="h-10 text-[18px] bg-amber-700 px-2 rounded-[5px] transition hover:brightness-150 active:bg-amber-400">Create Account</button>
             </div>
         </nav>
     );
