@@ -6,3 +6,15 @@
     font-family: "Poppins", sans-serif;
     color-scheme: dark;
 }
+
+@theme {
+    --breakpoint-smphone: 320px;
+    --breakpoint-mdphone: 392px;
+    --breakpoint-lgphone: 640px;
+    --breakpoint-smtablet: 768px;
+    --breakpoint-mdtablet: 1024px;
+    --breakpoint-lgtablet: 1280px;
+    --breakpoint-smdesktop: 1440px;
+    --breakpoint-mddesktop: 1920px;
+    --breakpoint-lgdesktop: 2560px;
+}
