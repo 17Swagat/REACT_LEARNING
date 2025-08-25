@@ -3,7 +3,7 @@ import { videos } from "../assets"
 export default function HeroSection() {
     return (
         <section
-            className=" py-10 laptop:py-15 pt-10 laptop:pt-20 flex flex-col justify-center bg-gradient-to-br from-blue-800 to bg-purple-700 text-white text-center">
+            className=" py-10 laptop:py-15 pt-10 laptop:pt-20 flex flex-col justify-center bg-gradient-to-br from-blue-900 to bg-purple-700 text-white text-center">
 
             {/* Heading... */}
             <h1
@@ -33,13 +33,15 @@ export default function HeroSection() {
             <div className="flex flex-col p-8 gap-2 items-center lgtablet:flex-row lgtablet:gap-5 lgtablet:justify-center pointer-events-none">
 
                 <video
-                    src={videos.video1}
                     autoPlay
                     loop
                     muted
                     playsInline
                     className="w-[400px] rounded-[10px] smtablet:w-[600px] laptop:w-[650px] smdesktop:w-[800px]"
-                />
+                >
+                    <source src={videos.video1} type="video/mp4" />
+                    Your Browser Does not support the video
+                </video>
 
                 <video
                     src={videos.video2}

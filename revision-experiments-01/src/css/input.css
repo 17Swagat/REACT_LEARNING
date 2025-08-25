@@ -10,13 +10,20 @@
 }
 
 @theme {
+    /* Phones */
     --breakpoint-smphone: 320px;
     --breakpoint-mdphone: 392px;
     --breakpoint-lgphone: 640px;
+    
+    /* Tablets */
     --breakpoint-smtablet: 768px;
     --breakpoint-mdtablet: 1024px; /*ipad pro*/
     --breakpoint-lgtablet: 1280px;
+    
+    /* Laptop */
     --breakpoint-laptop: 1440px;
+    
+    /* Desktop */
     --breakpoint-smdesktop: 1800px;
     --breakpoint-mddesktop: 1920px;
     --breakpoint-lgdesktop: 2560px;

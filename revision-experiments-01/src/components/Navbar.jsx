@@ -1,8 +1,21 @@
 import { images } from "../assets";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Navbar = () => {
     const [drawerOpen, toggleDrawer] = useState(false)
+
+    useEffect(() => {
+    if (drawerOpen) {
+        document.body.style.overflow = "hidden";
+    } else {
+        document.body.style.overflow = "auto";
+    }
+
+    // Cleanup on unmount
+    return () => {
+        document.body.style.overflow = "auto";
+    };
+}, [drawerOpen]);
 
     return (
         <nav className="sticky top-0 bg-[#53330285] flex justify-between xl:justify-around items-center">
@@ -15,21 +28,22 @@ const Navbar = () => {
                 {drawerOpen ? "X" : "="}
             </button>
             <div id="drawerBody"
-                className={`fixed inset-0 overflow-x-hidden ${(drawerOpen) ? "pointer-events-auto" : "pointer-events-none"}  z-40 xl:hidden`} >
+                className={`fixed inset-0 overflow-x-hidden overflow-y-hidden   ${(drawerOpen) ? "pointer-events-auto" : "pointer-events-none"}  z-[49] xl:hidden `} >
                 {/* Close Area */}
                 <div className={`${drawerOpen ? "absolute left-0 w-[20vw] h-full bg-transparent" : "hidden"}`} 
                     onClick={()=>{toggleDrawer(prev => !prev)}}></div>
                 {/* Drawer */}
                 <div id="drawer"
-                    className={`w-[80vw] h-full bg-blue-500 absolute right-0 transition duration-300 
+                    className={`w-[80vw] h-screen bg-blue-500 absolute right-0 transition duration-300 
                 ${drawerOpen ? "translate-x-0" : "translate-x-full"}`}>
                     {/* Drawer Header */}
                     <div className="w-full h-20 bg-[#919402]"></div>
-                    <div className="w-full h-full bg-amber-700 flex flex-col">
-                        {/* Navbar-Option */}
+                    
+                    <div className="w-full h-full bg-amber-700 flex flex-col justify-between ">
                         <ul className="text-3xl flex flex-col items-end p-3 gap-5">
                             <li className="active:text-black">
-                                <a href="#">Home</a>
+                                {/* <a href="#">Home</a> */}
+                                <button>Home</button>
                             </li>
                             <li className="active:text-black">
                                 <a href="#">Products</a>
@@ -41,9 +55,8 @@ const Navbar = () => {
                                 <a href="#">Contact Us</a>
                             </li>
                         </ul>
-                        {/* Sign-In & Create Account */}
                         <div className="bg-amber-500 h-full flex flex-col">
-                            <div className="absolute bottom-0 right-0 flex flex-col gap-3 mb-2 items-end pr-2">
+                            <div className="bg-pink-400 absolute bottom-0 right-0 flex flex-col gap-3 mb-2 items-end pr-2">
                                 <div>
                                     <button className="h-12 text-3xl bg-amber-600 px-2 rounded-[5px]
                                     flex items-center justify-end transition duration-100 active:invert">Sign In</button>
@@ -55,6 +68,7 @@ const Navbar = () => {
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
             
