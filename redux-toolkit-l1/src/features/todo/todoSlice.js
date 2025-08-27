@@ -1,32 +1,45 @@
 import { createSlice, nanoid } from "@reduxjs/toolkit";
 
-const initialState = {
-    todos: [{
-        id: nanoid(),
-        text: "Learn Redux Toolkit",
-        // completed: false
-    }]
-} // could be [] Array also. 
-
-
-export const todoSlice = createSlice({
-    name: 'todo', 
-    initialState,
-    reducers: {
-        addTodo: (state, action)=>{
-            const todo = {
-                id: nanoid(),
-                text: action.payload // "<action.payload> is an Object."
-            }
-            state.todos = [todo, ...state.todos] // Or We can do: `state.todos.push(todo)`
-        },
-        removeTodo: (state, action)=>{
-    state.todos = state.todos.filter(
-        todo => (todo.id !== action.payload));
+const initState = {
+    todos: [
+        { id: nanoid(), title: "Learn Redux", completed: false },
+        { id: nanoid(), title: "Revise Your Learnings", completed: false },
+    ]
 }
 
-    },
+export const todoSlice = createSlice({
+    name: 'Todo',
+    initialState: initState,
+    reducers: {
+        addTodo: (state, action) => {
+            if (action.payload.trim() === ''){
+                return;
+            }
+            state.todos.unshift({
+                id: nanoid(),
+                title: action.payload,
+                completed: false
+            })
+        },
+        
+        updateTodo: (state, action)=> {
+            state.todos = state.todos.map(todo => {
+                if (todo.id == action.payload.id){
+                    todo.title = action.payload.title
+                    return todo;
+                }
+                return todo;
+            })
+        },
+        
+        deleteTodo: (state, action)=> {
+            let id = action.payload
+            state.todos = state.todos.filter(
+                (item)=>(item.id !== id)
+            )
+        }
+    }
 })
 
-export const {addTodo, removeTodo} = todoSlice.actions;
-export default todoSlice.reducer;
+export const {addTodo, updateTodo, deleteTodo} = todoSlice.actions
+export const todoReducer =  todoSlice.reducer

@@ -1,55 +1,60 @@
-import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { removeTodo } from '../features/todo/todoSlice'
+import { useSelector, useDispatch } from "react-redux";
+import AddTodo from "./AddTodo";
+import { deleteTodo, updateTodo } from "../features/todo/todoSlice";
+import { useEffect, useState } from "react";
 
-function Todos() {
-    const todos = useSelector(state => state.todos)
-    const dispatch = useDispatch()
+
+export default function Todos() {
+
+    const todolists = useSelector(state => state.todos)
 
     return (
-        <>
-            <h1 className='text-3xl'>Todos</h1>
-            <ul className="list-none">
-                {todos.map((todo) => (
-                    <li
-                        className='flex items-center'
-                        key={todo.id}
-                    >
-                        <div className='bg-yellow-'>{todo.text}</div>
-                        <button
-                            onClick={() => dispatch(removeTodo(todo.id))}
-                            className='bg-blue-500 p-2 text-2xl'
-                        >
-                            Delete
-                        </button>
-                    </li>
-                ))}
-            </ul>
-        </>
-    )
+        <div
+            className="bg-amber-700 w-full h-full flex flex-col justify-center items-center py-10 gap-3">
+
+            <AddTodo />
+
+            {todolists.map((todo) => {
+                return <TodoTile key={todo.id} todo={todo}/>
+            })}
+        </div>
+    );
 }
 
-export default Todos
+function TodoTile({todo}) {
+    const dispatch = useDispatch()
+    const [isEditable, setEditable] = useState(false)
 
+    const [text, setText] = useState(todo.title)
 
-
-
-// import { useSelector, useDispatch } from "react-redux"
-// import { removeTodo } from "../features/todo/todoSlice"
-
-// export default function Todos(){
-//     const todos = useSelector(state => state.todo.todos)
-//     const dispatch = useDispatch()
-//     return <div>
-//         <h1>Todos</h1>
-//         {todos.map((todo)=>(
-//             <li key={todo.id}>
-//                 {todo.text}
-//                 <button
-//                     onClick={()=>dispatch(removeTodo(todo.id))}
-//                 >Delete</button>
-//             </li>
-//         ))}
-//     </div>
-// }
-
+    return <div key={todo.id} className="flex items-center">
+        <input type="text"
+            value={text}
+            readOnly = {!isEditable}
+            onChange={(e) => {
+                setText(e.target.value)
+            }}
+            className="border-2 text-3xl p-2 rounded-[10px]" />
+        <div className="flex gap-2">
+            
+            <button
+                className="text-2xl bg-red-500 p-1 rounded-[5px] ml-2 active:invert"
+                onClick={() => {
+                    dispatch(deleteTodo(todo.id))
+                }}>🗑️</button>
+            
+            <button
+                className="text-2xl bg-blue-500 p-1 rounded-[5px] active:invert"
+                onClick={() => {
+                    setEditable(prev => !prev)
+                    if (isEditable) {
+                        let title = text;
+                        dispatch(updateTodo({
+                            id:todo.id, 
+                            title
+                        }))
+                    }
+                }}>️{isEditable ? "💾": "✏️"}</button>
+        </div>
+    </div>
+}
