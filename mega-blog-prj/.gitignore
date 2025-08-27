@@ -24,4 +24,4 @@ dist-ssr
 *.sw?
 
 #  ME:=>
-.env
+*.env
